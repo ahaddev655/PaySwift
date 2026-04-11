@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Index from "./pages/Index";
 import AuthPage from "./pages/AuthPage";
+import UserLayout from "./layouts/UserLayout";
+import UserDashboardPage from "./pages/user/UserDashboardPage";
 
 function App() {
   const routes = createBrowserRouter([
@@ -12,6 +14,28 @@ function App() {
     {
       path: "/auth/",
       element: <AuthPage />,
+    },
+    {
+      path: "/u/",
+      element: <UserLayout />,
+      children: [
+        {
+          index: true,
+          element: <UserDashboardPage />,
+        },
+        {
+          path: "transfer",
+          element: "TransferPage",
+        },
+        {
+          path: "history",
+          element: "HistoryPage",
+        },
+        {
+          path: "profile",
+          element: "ProfilePage",
+        },
+      ],
     },
   ]);
 
