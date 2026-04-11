@@ -4,3 +4,13 @@ body {
     background: #f8f8f8;
 
 }
+
+button {
+    cursor: pointer;
+}
+
+input,
+textarea,
+button {
+    outline: none;
+}
