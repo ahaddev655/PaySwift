@@ -10,13 +10,28 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
 import googleIcon from "../assets/google_icon.svg";
+import { useNavigate } from "react-router-dom";
 
 const INITIAL_STATE = { fname: "", email: "", password: "", mobileNumber: "" };
+
+const InputField = ({ label, icon: Icon, ...props }) => (
+  <div className="flex flex-col space-y-1 relative">
+    <label className="font-medium text-sm text-gray-700">{label}</label>
+    <div className="relative">
+      <input
+        {...props}
+        className="h-10 w-full rounded-lg text-sm border-2 border-gray-300 focus:border-blue-700 text-gray-600 px-3 pl-10 placeholder:text-gray-400 transition-colors outline-none"
+      />
+      <Icon size={17} className="absolute top-3 left-3.5 text-gray-500" />
+    </div>
+  </div>
+);
 
 function AuthPage() {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const [isLogin, setIsLogin] = useState(false);
   const { fname, email, password, mobileNumber } = formData;
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +43,9 @@ function AuthPage() {
       if (!email && !password) return toast.error("All fields are required");
       if (isInvalidEmail) return toast.error("Email is invalid");
       if (!password?.trim()) return toast.error("Password is required");
+
+      localStorage.setItem("token", "user-qwertyuiopasdfghjklzxcvbnm");
+      localStorage.setItem("id", "1");
       toast.success("Welcome Back, User!");
     } else {
       if (!email || !password || !fname || !mobileNumber)
@@ -38,11 +56,17 @@ function AuthPage() {
         return toast.error("Mobile Number is required");
       if (isInvalidPass)
         return toast.error("Password length must be more than 11");
+
       toast.success("Registration Successful");
+      localStorage.setItem("token", "user-qwertyuiopasdfghjklzxcvbnm");
+      localStorage.setItem("id", "1");
     }
 
     console.log(formData);
     setFormData(INITIAL_STATE);
+    setTimeout(() => {
+      navigate("/u/");
+    }, 1500);
   };
 
   const handleInputChange = ({ target: { name, value } }) => {
@@ -56,24 +80,13 @@ function AuthPage() {
 
   useEffect(() => setFormData(INITIAL_STATE), [isLogin]);
 
-  const InputField = ({ label, icon: Icon, ...props }) => (
-    <div className="flex flex-col space-y-1 relative">
-      <label className="font-medium text-sm text-gray-700">{label}</label>
-      <input
-        {...props}
-        className="h-10 rounded-lg text-sm border-2 border-gray-300 focus:border-blue-700 text-gray-600 px-3 pl-10 placeholder:text-gray-400 transition-colors"
-      />
-      <Icon size={17} className="absolute top-9 left-3.5 text-gray-500" />
-    </div>
-  );
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="flex items-center justify-center h-screen bg-gray-50"
     >
-      <div className="w-full max-w-md mx-4 shadow-2xl rounded-xl max-h-149 overflow-y-auto bg-white">
+      <div className="w-full max-w-md mx-4 shadow-2xl rounded-xl max-h-[90vh] overflow-y-auto bg-white">
         <ToastContainer
           theme="dark"
           autoClose={800}
@@ -82,6 +95,7 @@ function AuthPage() {
           limit={3}
         />
 
+        {/* Header Section */}
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -103,6 +117,7 @@ function AuthPage() {
           </p>
         </motion.div>
 
+        {/* Form Section */}
         <div className="p-6 space-y-4">
           <form onSubmit={handleSubmit} className="space-y-4">
             {!isLogin && (
@@ -113,15 +128,18 @@ function AuthPage() {
                 value={fname}
                 onChange={handleInputChange}
                 placeholder="John Doe"
+                required
               />
             )}
             <InputField
               label="Email"
               icon={Mail}
+              type="email"
               name="email"
               value={email}
               onChange={handleInputChange}
               placeholder="john.doe@example.com"
+              required
             />
             <InputField
               label="Password"
@@ -131,6 +149,7 @@ function AuthPage() {
               value={password}
               onChange={handleInputChange}
               placeholder="•••••••••••"
+              required
             />
             {!isLogin && (
               <InputField
@@ -140,12 +159,13 @@ function AuthPage() {
                 value={mobileNumber}
                 onChange={handleInputChange}
                 placeholder="03XX XXXXXXX"
+                required
               />
             )}
 
             <button
               type="submit"
-              className="text-white bg-linear-to-r from-[#1c69dc] to-[#0f57c3] w-full py-3 group rounded-lg flex items-center justify-center font-medium"
+              className="text-white bg-linear-to-r from-[#1c69dc] to-[#0f57c3] w-full py-3 group rounded-lg flex items-center justify-center font-medium hover:opacity-90 transition-opacity"
             >
               {isLogin ? "Sign In" : "Create Account"}{" "}
               <MoveRight className="ml-3 -translate-x-1 group-hover:translate-x-0 transition-transform" />
@@ -159,13 +179,14 @@ function AuthPage() {
           </div>
 
           <button className="py-3 w-full border-2 border-blue-300 rounded-lg flex items-center justify-center gap-2 hover:shadow-lg transition-all font-medium">
-            <img src={googleIcon} alt="Google" /> Continue With Google
+            <img src={googleIcon} alt="Google" className="w-5 h-5" /> Continue
+            With Google
           </button>
 
           <p className="text-center text-sm text-[#7384A3]">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
             <span
-              className="text-[#1f66d9] font-semibold cursor-pointer"
+              className="text-[#1f66d9] font-semibold cursor-pointer hover:underline"
               onClick={() => setIsLogin(!isLogin)}
             >
               {isLogin ? "Sign Up" : "Sign In"}

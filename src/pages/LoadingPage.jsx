@@ -3,7 +3,7 @@ import { Zap } from "lucide-react";
 
 function LoadingPage() {
   return (
-    <div class="bg-[linear-gradient(160deg,#3078E6,#1A53A0)] fixed w-full h-full flex items-center justify-center flex-col">
+    <div className="bg-[linear-gradient(160deg,#3078E6,#1A53A0)] fixed w-full h-full flex items-center justify-center flex-col">
       <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
