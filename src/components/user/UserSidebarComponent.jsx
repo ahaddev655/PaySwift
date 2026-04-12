@@ -63,27 +63,26 @@ function UserSidebarComponent() {
         <ul className="px-2 space-y-2">
           {navItems.map((item, i) => (
             <NavLink
+              onClick={() => setIsToggle(false)}
               key={i}
               to={item.link}
               end
-              className={({
-                isActive,
-              }) => `group flex items-center py-2.5 px-4 mx-2 rounded-xl mb-1 transition-all duration-300 ease-in-out
-      ${
-        isActive
-          ? "bg-blue-50 text-blue-700 shadow-sm"
-          : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
-      }
-    `}
+              className={({ isActive }) =>
+                `group flex items-center py-2.5 px-4 mx-2 rounded-xl mb-1 transition-all duration-300 ease-in-out ${
+                  isActive
+                    ? "bg-blue-50 text-blue-700 shadow-sm"
+                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                }`
+              }
             >
-              {/* Active Indicator Line */}
               {({ isActive }) => (
                 <>
                   <div
-                    className={`
-          transition-transform duration-300 group-hover:scale-110
-          ${isActive ? "text-blue-600" : "text-slate-400 group-hover:text-blue-500"}
-        `}
+                    className={`transition-transform duration-300 group-hover:scale-110 ${
+                      isActive
+                        ? "text-blue-600"
+                        : "text-slate-400 group-hover:text-blue-500"
+                    }`}
                   >
                     {item.icon}
                   </div>
