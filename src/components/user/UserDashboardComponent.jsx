@@ -14,7 +14,9 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 function UserDashboardComponent() {
+  // ==================== USESTATES ====================
   const [userBalance, setUserBalance] = useState("45000");
+  // ==================== ARRAYS ====================
   const links = [
     {
       link: "/u/transfer",
@@ -61,6 +63,7 @@ function UserDashboardComponent() {
         animate={{ y: 0, opacity: 1 }}
         className="bg-linear-to-r from-[#1c69dc] to-[#0f57c3] py-6 px-6 rounded-xl"
       >
+        {/* ==================== HEADING ==================== */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-13 h-13 bg-[#4986e1] rounded-full grid place-items-center">
@@ -75,6 +78,7 @@ function UserDashboardComponent() {
               </h1>
             </div>
           </div>
+          {/* ==================== NOTIFICATION BUTTON ==================== */}
           <Link to={"/notifications"}>
             <button className="w-10 h-10 rounded-full bg-white/15 backdrop-blur flex items-center justify-center relative">
               <Bell className="w-5 h-5 text-white" />
@@ -83,6 +87,7 @@ function UserDashboardComponent() {
           </Link>
         </div>
 
+        {/* ==================== BALANCE AND ACCOUNT ==================== */}
         <div className="bg-linear-to-r from-[#3b7bdb] to-[#316dc8] rounded-xl p-4">
           <span className="text-xs text-white/50 font-medium">
             Available Balance
@@ -99,6 +104,7 @@ function UserDashboardComponent() {
         </div>
       </motion.div>
 
+      {/* ==================== QUICK LINKS ==================== */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -130,6 +136,7 @@ function UserDashboardComponent() {
         })}
       </motion.div>
 
+      {/* ==================== RECENT TRANSACTIONS ==================== */}
       <div>
         <div className="flex items-center justify-between gap-2">
           <h1 className="font-semibold text-lg text-gray-700">

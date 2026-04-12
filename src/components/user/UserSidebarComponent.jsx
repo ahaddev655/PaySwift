@@ -11,7 +11,9 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function UserSidebarComponent() {
+  // ==================== USESTATES ====================
   const [isToggle, setIsToggle] = useState(false);
+  // ==================== ARRAYS ====================
   const navItems = [
     { link: "/u/", name: "Home", icon: <House size={20} /> },
     {
@@ -25,12 +27,15 @@ function UserSidebarComponent() {
 
   return (
     <>
+      {/* ==================== MOBILE OVERLAY ==================== */}
       <div
         className={`fixed w-full h-full bg-black/50 backdrop-blur-md transition-opacity ease-in-out duration-200 ${isToggle ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
       />
+      {/* ==================== SIDEBAR ==================== */}
       <div
         className={`z-20 lg:max-w-67.75 sm:max-w-73.75 w-full min-h-screen bg-white border border-gray-200 py-4 lg:relative fixed transition-transform duration-200 ease-in-out ${isToggle ? "translate-x-0" : "lg:translate-x-0 -translate-x-full"}`}
       >
+        {/* ==================== SIDEBAR CLOSE BUTTON ==================== */}
         <button
           onClick={() => setIsToggle(false)}
           className="absolute top-4 right-4 lg:hidden p-1.5 rounded-xl bg-slate-100 text-slate-500 hover:bg-red-50 hover:text-red-600 transition-all duration-200 ease-in-out active:scale-90"
@@ -38,6 +43,7 @@ function UserSidebarComponent() {
           <X size={18} strokeWidth={2.5} />
         </button>
 
+        {/* ==================== SIDEBAR OPEN BUTTON ==================== */}
         {!isToggle && (
           <button
             onClick={() => setIsToggle(true)}

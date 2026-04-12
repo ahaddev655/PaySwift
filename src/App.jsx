@@ -4,6 +4,7 @@ import Index from "./pages/Index";
 import AuthPage from "./pages/AuthPage";
 import UserLayout from "./layouts/UserLayout";
 import UserDashboardPage from "./pages/user/UserDashboardPage";
+import UserTransferPage from "./pages/user/UserTransferPage";
 
 function App() {
   const routes = createBrowserRouter([
@@ -25,7 +26,7 @@ function App() {
         },
         {
           path: "transfer",
-          element: "TransferPage",
+          element: <UserTransferPage />,
         },
         {
           path: "history",
