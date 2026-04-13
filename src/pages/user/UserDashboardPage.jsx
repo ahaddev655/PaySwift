@@ -14,11 +14,7 @@ function UserDashboardPage() {
     navigate("/auth");
   }, [navigate]);
 
-  return (
-    <div className="py-6">
-      <UserDashboardComponent />
-    </div>
-  );
+  return <UserDashboardComponent />;
 }
 
 export default UserDashboardPage;

@@ -57,11 +57,11 @@ function UserDashboardComponent() {
     { name: "Fatima Noor", type: "received", amount: 12000, time: "Yesterday" },
   ];
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 py-6">
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="bg-linear-to-r from-[#1c69dc] to-[#0f57c3] py-6 px-6 rounded-xl"
+        className="bg-linear-to-r from-[#1c69dc] to-[#0f57c3] p-6 rounded-xl"
       >
         {/* ==================== HEADING ==================== */}
         <div className="flex items-center justify-between">

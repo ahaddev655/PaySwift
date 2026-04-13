@@ -166,7 +166,7 @@ function UserTransferComponent() {
   };
 
   return (
-    <div>
+    <div className="py-6">
       {/* ==================== POPUPS ==================== */}
       {/* -------------------- SEND MONEY POPUP -------------------- */}
       {transactionPopUp && amountPopUp()}
@@ -199,6 +199,7 @@ function UserTransferComponent() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.1 }}
+            exit={{ opacity: 0, x: 30 }}
             key={contact.mobileNumber}
             onClick={() => {
               setSelectedUser(contact);

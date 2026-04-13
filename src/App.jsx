@@ -5,6 +5,7 @@ import AuthPage from "./pages/AuthPage";
 import UserLayout from "./layouts/UserLayout";
 import UserDashboardPage from "./pages/user/UserDashboardPage";
 import UserTransferPage from "./pages/user/UserTransferPage";
+import UserHistoryPage from './pages/user/UserHistoryPage';
 
 function App() {
   const routes = createBrowserRouter([
@@ -30,7 +31,7 @@ function App() {
         },
         {
           path: "history",
-          element: "HistoryPage",
+          element: <UserHistoryPage />,
         },
         {
           path: "profile",

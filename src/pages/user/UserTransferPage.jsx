@@ -15,9 +15,7 @@ function UserTransferPage() {
   }, [navigate]);
 
   return (
-    <div className="py-6">
       <UserTransferComponent />
-    </div>
   );
 }
 
