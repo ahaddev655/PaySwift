@@ -6,6 +6,7 @@ import UserLayout from "./layouts/UserLayout";
 import UserDashboardPage from "./pages/user/UserDashboardPage";
 import UserTransferPage from "./pages/user/UserTransferPage";
 import UserHistoryPage from './pages/user/UserHistoryPage';
+import UserProfilePage from "./pages/user/UserProfilePage";
 
 function App() {
   const routes = createBrowserRouter([
@@ -35,7 +36,7 @@ function App() {
         },
         {
           path: "profile",
-          element: "ProfilePage",
+          element: <UserProfilePage />,
         },
       ],
     },

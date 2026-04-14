@@ -1,4 +1,5 @@
 import {
+  KeyRound,
   Mail,
   MoveRight,
   Phone,
@@ -12,7 +13,13 @@ import { toast, ToastContainer } from "react-toastify";
 import googleIcon from "../assets/google_icon.svg";
 import { useNavigate } from "react-router-dom";
 
-const INITIAL_STATE = { fname: "", email: "", password: "", mobileNumber: "" };
+const INITIAL_STATE = {
+  fname: "",
+  email: "",
+  password: "",
+  mobileNumber: "",
+  pinCode: "",
+};
 
 const InputField = ({ label, icon: Icon, ...props }) => (
   <div className="flex flex-col space-y-1 relative">
@@ -30,7 +37,7 @@ const InputField = ({ label, icon: Icon, ...props }) => (
 function AuthPage() {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const [isLogin, setIsLogin] = useState(false);
-  const { fname, email, password, mobileNumber } = formData;
+  const { fname, email, password, mobileNumber, pinCode } = formData;
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -40,15 +47,14 @@ function AuthPage() {
       !password?.trim() || (!isLogin && password.length < 11);
 
     if (isLogin) {
-      if (!email && !password) return toast.error("All fields are required");
+      if (!email || !pinCode) return toast.error("All fields are required");
       if (isInvalidEmail) return toast.error("Email is invalid");
-      if (!password?.trim()) return toast.error("Password is required");
 
       localStorage.setItem("token", "user-qwertyuiopasdfghjklzxcvbnm");
       localStorage.setItem("id", "1");
       toast.success("Welcome Back, User!");
     } else {
-      if (!email || !password || !fname || !mobileNumber)
+      if (!email || !password || !fname || !mobileNumber || !pinCode)
         return toast.error("All fields are required");
       if (isInvalidEmail) return toast.error("Email is invalid");
       if (!fname?.trim()) return toast.error("Full Name is required");
@@ -74,6 +80,11 @@ function AuthPage() {
     if (name === "mobileNumber") {
       const clean = value.replace(/\D/g, "").slice(0, 11);
       val = clean.length > 4 ? `${clean.slice(0, 4)} ${clean.slice(4)}` : clean;
+    }
+
+    if (name === "pinCode") {
+      const clean = value;
+      val = clean.length > 4 ? `${clean.slice(0, 4)}` : clean;
     }
     setFormData((prev) => ({ ...prev, [name]: val }));
   };
@@ -120,37 +131,39 @@ function AuthPage() {
         {/* Form Section */}
         <div className="p-6 space-y-4">
           <form onSubmit={handleSubmit} className="space-y-4">
+            <InputField
+              label="Full Name"
+              icon={UserRound}
+              name="fname"
+              value={fname}
+              onChange={handleInputChange}
+              placeholder="John Doe"
+              required
+            />
             {!isLogin && (
               <InputField
-                label="Full Name"
-                icon={UserRound}
-                name="fname"
-                value={fname}
+                label="Email"
+                icon={Mail}
+                type="email"
+                name="email"
+                value={email}
                 onChange={handleInputChange}
-                placeholder="John Doe"
+                placeholder="john.doe@example.com"
                 required
               />
             )}
-            <InputField
-              label="Email"
-              icon={Mail}
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleInputChange}
-              placeholder="john.doe@example.com"
-              required
-            />
-            <InputField
-              label="Password"
-              icon={UserRoundKey}
-              type="password"
-              name="password"
-              value={password}
-              onChange={handleInputChange}
-              placeholder="•••••••••••"
-              required
-            />
+            {!isLogin && (
+              <InputField
+                label="Password"
+                icon={UserRoundKey}
+                type="password"
+                name="password"
+                value={password}
+                onChange={handleInputChange}
+                placeholder="•••••••••••"
+                required
+              />
+            )}
             {!isLogin && (
               <InputField
                 label="Mobile Number"
@@ -162,6 +175,15 @@ function AuthPage() {
                 required
               />
             )}
+            <InputField
+              label="PIN"
+              icon={KeyRound}
+              name="pinCode"
+              value={pinCode}
+              onChange={handleInputChange}
+              placeholder="XXXX"
+              required
+            />
 
             <button
               type="submit"
