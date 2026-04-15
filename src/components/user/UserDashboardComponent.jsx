@@ -24,22 +24,22 @@ function UserDashboardComponent() {
       icon: Send,
     },
     {
-      link: "/u/qr-pay",
+      link: "/u/transfer",
       text: "QR Pay",
       icon: QrCode,
     },
     {
-      link: "/u/topup",
+      link: "/u/transfer",
       text: "Mobile Top-up",
       icon: Smartphone,
     },
     {
-      link: "/u/internet",
+      link: "/u/transfer",
       text: "Internet",
       icon: Wifi,
     },
     {
-      link: "/u/utilities",
+      link: "/u/transfer",
       text: "Utilities",
       icon: Droplets,
     },
@@ -79,7 +79,7 @@ function UserDashboardComponent() {
             </div>
           </div>
           {/* ==================== NOTIFICATION BUTTON ==================== */}
-          <Link to={"/notifications"}>
+          <Link to={"/u/notifications"}>
             <button className="w-10 h-10 rounded-full bg-white/15 backdrop-blur flex items-center justify-center relative">
               <Bell className="w-5 h-5 text-white" />
               <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#df3a3a]" />

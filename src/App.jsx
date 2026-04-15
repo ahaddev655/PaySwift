@@ -7,6 +7,11 @@ import UserDashboardPage from "./pages/user/UserDashboardPage";
 import UserTransferPage from "./pages/user/UserTransferPage";
 import UserHistoryPage from './pages/user/UserHistoryPage';
 import UserProfilePage from "./pages/user/UserProfilePage";
+import UserSecurityPage from './pages/user/UserSecurityPage';
+import UserNotificationPage from './pages/user/UserNotificationPage';
+import UserSettingsPage from './pages/user/UserSettingsPage';
+import UserCardsPage from './pages/user/UserCardsPage';
+import UserHelpSupportPage from "./pages/user/userHelpSupportPage";
 
 function App() {
   const routes = createBrowserRouter([
@@ -37,6 +42,26 @@ function App() {
         {
           path: "profile",
           element: <UserProfilePage />,
+        },
+        {
+          path: "security",
+          element: <UserSecurityPage />,
+        },
+        {
+          path: "notifications",
+          element: <UserNotificationPage />,
+        },
+        {
+          path: "settings",
+          element: <UserSettingsPage />,
+        },
+        {
+          path: "cards",
+          element: <UserCardsPage />,
+        },
+        {
+          path: "help",
+          element: <UserHelpSupportPage />,
         },
       ],
     },
