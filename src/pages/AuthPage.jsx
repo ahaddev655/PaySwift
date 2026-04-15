@@ -37,7 +37,14 @@ const InputField = ({ label, icon: Icon, ...props }) => (
 function AuthPage() {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const [isLogin, setIsLogin] = useState(false);
-  const { fname, email, password, mobileNumber, pinCode } = formData;
+  // Default values prevent "undefined" errors on inputs
+  const {
+    fname = "",
+    email = "",
+    password = "",
+    mobileNumber = "",
+    pinCode = "",
+  } = formData;
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -47,6 +54,7 @@ function AuthPage() {
       !password?.trim() || (!isLogin && password.length < 11);
 
     if (isLogin) {
+      // Login Logic
       if (!email || !pinCode) return toast.error("All fields are required");
       if (isInvalidEmail) return toast.error("Email is invalid");
 
@@ -54,6 +62,7 @@ function AuthPage() {
       localStorage.setItem("id", "1");
       toast.success("Welcome Back, User!");
     } else {
+      // Signup Logic
       if (!email || !password || !fname || !mobileNumber || !pinCode)
         return toast.error("All fields are required");
       if (isInvalidEmail) return toast.error("Email is invalid");
@@ -83,13 +92,15 @@ function AuthPage() {
     }
 
     if (name === "pinCode") {
-      const clean = value;
-      val = clean.length > 4 ? `${clean.slice(0, 4)}` : clean;
+      val = value.replace(/\D/g, "").slice(0, 4);
     }
     setFormData((prev) => ({ ...prev, [name]: val }));
   };
 
-  useEffect(() => setFormData(INITIAL_STATE), [isLogin]);
+  // Reset form when switching between login and signup
+  useEffect(() => {
+    setFormData(INITIAL_STATE);
+  }, [isLogin]);
 
   return (
     <motion.div
@@ -131,27 +142,29 @@ function AuthPage() {
         {/* Form Section */}
         <div className="p-6 space-y-4">
           <form onSubmit={handleSubmit} className="space-y-4">
-            <InputField
-              label="Full Name"
-              icon={UserRound}
-              name="fname"
-              value={fname}
-              onChange={handleInputChange}
-              placeholder="John Doe"
-              required
-            />
             {!isLogin && (
               <InputField
-                label="Email"
-                icon={Mail}
-                type="email"
-                name="email"
-                value={email}
+                label="Full Name"
+                icon={UserRound}
+                name="fname"
+                value={fname}
                 onChange={handleInputChange}
-                placeholder="john.doe@example.com"
+                placeholder="John Doe"
                 required
               />
             )}
+
+            <InputField
+              label="Email"
+              icon={Mail}
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleInputChange}
+              placeholder="john.doe@example.com"
+              required
+            />
+
             {!isLogin && (
               <InputField
                 label="Password"
@@ -164,6 +177,7 @@ function AuthPage() {
                 required
               />
             )}
+
             {!isLogin && (
               <InputField
                 label="Mobile Number"
@@ -175,6 +189,7 @@ function AuthPage() {
                 required
               />
             )}
+
             <InputField
               label="PIN"
               icon={KeyRound}
