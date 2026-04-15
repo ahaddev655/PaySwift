@@ -1,10 +1,8 @@
-import React from 'react'
-import UserHelpSupportComponent from '../../components/user/UserHelpSupportComponent'
+import React from "react";
+import UserHelpSupportComponent from "../../components/user/UserHelpSupportComponent";
 
 function UserHelpSupportPage() {
-  return (
-    <UserHelpSupportComponent />
-  )
+  return <UserHelpSupportComponent />;
 }
 
-export default UserHelpSupportPage
+export default UserHelpSupportPage;

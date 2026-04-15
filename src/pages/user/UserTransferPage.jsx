@@ -14,9 +14,7 @@ function UserTransferPage() {
     navigate("/auth");
   }, [navigate]);
 
-  return (
-      <UserTransferComponent />
-  );
+  return <UserTransferComponent />;
 }
 
 export default UserTransferPage;

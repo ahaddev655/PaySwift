@@ -1,10 +1,8 @@
-import React from 'react'
-import UserNotificationComponent from '../../components/user/UserNotificationComponent'
+import React from "react";
+import UserNotificationComponent from "../../components/user/UserNotificationComponent";
 
 function UserNotificationPage() {
-  return (
-    <UserNotificationComponent />
-  )
+  return <UserNotificationComponent />;
 }
 
-export default UserNotificationPage
+export default UserNotificationPage;

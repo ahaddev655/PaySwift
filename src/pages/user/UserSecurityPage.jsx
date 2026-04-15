@@ -1,10 +1,8 @@
-import React from 'react'
-import UserSecurityComponent from '../../components/user/UserSecurityComponent'
+import React from "react";
+import UserSecurityComponent from "../../components/user/UserSecurityComponent";
 
 function UserSecurityPage() {
-  return (
-    <UserSecurityComponent />
-  )
+  return <UserSecurityComponent />;
 }
 
-export default UserSecurityPage
+export default UserSecurityPage;

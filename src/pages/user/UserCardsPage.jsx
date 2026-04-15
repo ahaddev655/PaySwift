@@ -1,10 +1,8 @@
-import React from 'react'
-import UserCardsComponent from '../../components/user/UserCardsComponent'
+import React from "react";
+import UserCardsComponent from "../../components/user/UserCardsComponent";
 
 function UserCardsPage() {
-  return (
-    <UserCardsComponent />
-  )
+  return <UserCardsComponent />;
 }
 
-export default UserCardsPage
+export default UserCardsPage;

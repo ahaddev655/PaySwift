@@ -1,10 +1,8 @@
-import React from 'react'
-import UserSettingsComponent from '../../components/user/UserSettingsComponent'
+import React from "react";
+import UserSettingsComponent from "../../components/user/UserSettingsComponent";
 
 function UserSettingsPage() {
-  return (
-    <UserSettingsComponent />
-  )
+  return <UserSettingsComponent />;
 }
 
-export default UserSettingsPage
+export default UserSettingsPage;

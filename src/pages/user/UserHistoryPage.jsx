@@ -1,10 +1,8 @@
-import React from 'react'
-import UserHistoryComponent from '../../components/user/UserHistoryComponent'
+import React from "react";
+import UserHistoryComponent from "../../components/user/UserHistoryComponent";
 
 function UserHistoryPage() {
-  return (
-    <UserHistoryComponent />
-  )
+  return <UserHistoryComponent />;
 }
 
-export default UserHistoryPage
+export default UserHistoryPage;

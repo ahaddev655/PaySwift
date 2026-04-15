@@ -5,13 +5,13 @@ import AuthPage from "./pages/AuthPage";
 import UserLayout from "./layouts/UserLayout";
 import UserDashboardPage from "./pages/user/UserDashboardPage";
 import UserTransferPage from "./pages/user/UserTransferPage";
-import UserHistoryPage from './pages/user/UserHistoryPage';
+import UserHistoryPage from "./pages/user/UserHistoryPage";
 import UserProfilePage from "./pages/user/UserProfilePage";
-import UserSecurityPage from './pages/user/UserSecurityPage';
-import UserNotificationPage from './pages/user/UserNotificationPage';
-import UserSettingsPage from './pages/user/UserSettingsPage';
-import UserCardsPage from './pages/user/UserCardsPage';
-import UserHelpSupportPage from "./pages/user/userHelpSupportPage";
+import UserSecurityPage from "./pages/user/UserSecurityPage";
+import UserNotificationPage from "./pages/user/UserNotificationPage";
+import UserSettingsPage from "./pages/user/UserSettingsPage";
+import UserCardsPage from "./pages/user/UserCardsPage";
+import UserHelpSupportPage from "./pages/user/UserHelpSupportPage";
 
 function App() {
   const routes = createBrowserRouter([
